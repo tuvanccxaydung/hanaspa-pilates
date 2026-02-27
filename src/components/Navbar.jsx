@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import logoImg from '../assets/logo.png';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +29,7 @@ const Navbar = () => {
                     <div className="flex-shrink-0 flex items-center">
                         <a href="#home" className="flex items-center gap-3 group">
                             <img
-                                src="/src/assets/logo.png"
+                                src={logoImg}
                                 alt="HANA Logo"
                                 className="h-16 md:h-20 w-auto object-contain transition-all duration-300 transform group-hover:scale-105 group-hover:brightness-110"
                                 style={{

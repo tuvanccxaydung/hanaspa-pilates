@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import heroBgImg from '../assets/hero_bg.jpg';
 
 const About = () => {
     return (
@@ -16,7 +17,7 @@ const About = () => {
                     >
                         <div className="relative rounded-2xl overflow-hidden shadow-2xl z-10 aspect-[4/5]">
                             <img
-                                src="/src/assets/hero_bg.jpg"
+                                src={heroBgImg}
                                 alt="Pilates Studio"
                                 className="w-full h-full object-cover"
                             />

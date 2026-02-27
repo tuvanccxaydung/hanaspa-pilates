@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import heroBannerImg from '../assets/hero_banner_real.png';
 
 const Hero = () => {
     return (
@@ -8,7 +9,7 @@ const Hero = () => {
             {/* Background Image with Overlay */}
             <div className="absolute inset-0 z-0">
                 <img
-                    src="/src/assets/hero_banner_real.png"
+                    src={heroBannerImg}
                     alt="Luxurious Spa and Pilates Interior"
                     className="w-full h-full object-cover"
                 />
