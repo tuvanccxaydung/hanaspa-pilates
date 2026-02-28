@@ -119,7 +119,7 @@ const Contact = () => {
 
                         <div className="mt-10 rounded-xl overflow-hidden shadow-inner h-64 border-4 border-white">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15678.006963496035!2d106.62104336021612!3d10.772594452136004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ea144839ef1%3A0x798819bdcd0522b0!2zVMOibiBQaMO6LCBIbyBDaGkgTWluaCBDaXR5LCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1707530635432!5m2!1sen!2s"
+                                src="https://maps.google.com/maps?q=07%20Đông%20Hưng%20Thuận%208,%20Phường%20Đông%20Hưng%20Thuận,%20Quận%2012,%20TP.%20HCM&t=&z=17&ie=UTF8&iwloc=&output=embed"
                                 width="100%"
                                 height="100%"
                                 style={{ border: 0 }}
