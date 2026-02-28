@@ -2,6 +2,28 @@ import React from 'react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 
 const Contact = () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            if (response.ok) {
+                alert('Cảm ơn bạn! Yêu cầu đặt lịch đã được gửi, chúng tôi sẽ liên hệ lại sớm nhất.');
+                form.reset();
+            } else {
+                alert('Có lỗi xảy ra khi gửi thông tin, vui lòng thử lại.');
+            }
+        } catch (error) {
+            alert('Có lỗi xảy ra khi gửi thông tin, vui lòng đăng ký lại sau.');
+        }
+    };
+
     return (
         <section id="contact" className="py-20 md:py-32 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,21 +37,22 @@ const Contact = () => {
                     {/* Form Side */}
                     <div className="w-full lg:w-1/2 p-8 md:p-12 lg:pr-8">
                         <h3 className="text-2xl font-bold text-brand-text-dark mb-6">Đăng Ký Tư Vấn</h3>
-                        <form className="space-y-6">
+                        <form action="https://formspree.io/f/meeldwaz" method="POST" onSubmit={handleSubmit} className="space-y-6">
+                            <input type="hidden" name="_subject" value="🎉 Bạn có yêu cầu đặt lịch mới từ Website Hana Spa!" />
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Họ và Tên</label>
-                                    <input type="text" id="name" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition-colors" placeholder="Nguyễn Văn A" />
+                                    <input type="text" id="name" name="ho_ten" required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition-colors" placeholder="Nguyễn Văn A" />
                                 </div>
                                 <div>
                                     <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">Số Điện Thoại</label>
-                                    <input type="tel" id="phone" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition-colors" placeholder="090 123 4567" />
+                                    <input type="tel" id="phone" name="so_dien_thoai" required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition-colors" placeholder="090 123 4567" />
                                 </div>
                             </div>
 
                             <div>
                                 <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">Dịch Vụ Quan Tâm</label>
-                                <select id="service" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition-colors bg-white">
+                                <select id="service" name="dich_vu" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition-colors bg-white">
                                     <option value="">Chọn dịch vụ...</option>
                                     <option value="spa">Dịch Vụ Spa Trị Liệu</option>
                                     <option value="pilates_mat">Lớp Mat Pilates</option>
@@ -40,15 +63,15 @@ const Contact = () => {
 
                             <div>
                                 <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-2">Ngày Giờ Mong Muốn (Tuỳ chọn)</label>
-                                <input type="datetime-local" id="date" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition-colors" />
+                                <input type="datetime-local" id="date" name="ngay_gio" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition-colors" />
                             </div>
 
                             <div>
                                 <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-2">Ghi Chú Thêm</label>
-                                <textarea id="notes" rows="3" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition-colors resize-none" placeholder="Tình trạng sức khỏe, yêu cầu đặc biệt..."></textarea>
+                                <textarea id="notes" name="ghi_chu" rows="3" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition-colors resize-none" placeholder="Tình trạng sức khỏe, yêu cầu đặc biệt..."></textarea>
                             </div>
 
-                            <button type="button" className="w-full bg-brand-primary hover:bg-brand-primary-hover text-brand-text-dark font-bold py-4 rounded-xl transition-colors shadow-md text-lg">
+                            <button type="submit" className="w-full bg-brand-primary hover:bg-brand-primary-hover text-brand-text-dark font-bold py-4 rounded-xl transition-colors shadow-md text-lg">
                                 Gửi Yêu Cầu Đặt Lịch
                             </button>
                         </form>
@@ -80,7 +103,7 @@ const Contact = () => {
                                     <Mail className="w-6 h-6 text-brand-primary mr-4 shrink-0 mt-1" />
                                     <div>
                                         <h4 className="font-semibold text-gray-900">Email</h4>
-                                        <p className="text-gray-600 mt-1">hello@spapilateshana.vn</p>
+                                        <p className="text-gray-600 mt-1">spa.pilates.hana@gmail.com</p>
                                     </div>
                                 </div>
 
